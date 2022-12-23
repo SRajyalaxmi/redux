@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import {connect} from 'react-redux'
+import {IncAction} from './actions'
+import {DecAction} from './actions'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
-export default App;
+const App = ({local_variable,IncAction,DecAction}) => {
+    return (
+      <center>
+         <div>
+           <h1>{local_variable}</h1><br/>
+           <button onClick={()=>IncAction(1)} >increment</button><br/>
+           <button onClick={DecAction} >decrement</button>
+         </div>
+      </center>
+    )
+  }
+const mapStateToProps = state => ({
+  local_variable : state
+})
+export default connect(mapStateToProps,{IncAction,DecAction})(App)
